@@ -7,7 +7,7 @@ function App() {
     console.log("from app", searchData);
   };
   return (
-    <div className="container bg-[#d5d4d4] py-10">
+    <div className="container bg-[#d5d4d4] py-10 mt-10 rounded-md">
       <Search onSearchChange={handleOnSearchChange} />
       <WeatherForecast />
     </div>

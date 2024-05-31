@@ -8,7 +8,7 @@ module.exports = {
     },
     extend: {
       boxShadow: {
-        customShadow: "10px -2px 20px 2px rgb(0, 0, 0, 0.3)",
+        customShadow: "10px 10px 20px 2px rgb(0, 0, 0, 0.6)",
       },
     },
   },
