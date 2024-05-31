@@ -2,6 +2,7 @@ import Search from "./components/searchBar/Search";
 import WeatherForecast from "./components/currentWeather/CurrentWeather";
 import { CURRENT_WEATHER_API_URL } from "./components/api/api";
 import { useState } from "react";
+import LoadingSpinner from "./components/loadingspinner/LoadingSpinner";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -36,8 +37,12 @@ function App() {
   return (
     <div className="container bg-[#d5d4d4] py-10 mt-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
-      {currentWeather && (
-        <WeatherForecast weatherData={currentWeather} isLoading={isLoading} />
+      {!isLoading ? (
+        currentWeather && (
+          <WeatherForecast weatherData={currentWeather} isLoading={isLoading} />
+        )
+      ) : (
+        <LoadingSpinner />
       )}
     </div>
   );
