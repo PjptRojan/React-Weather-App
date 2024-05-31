@@ -1,9 +1,6 @@
 import Search from "./components/searchBar/Search";
 import WeatherForecast from "./components/currentWeather/CurrentWeather";
-import {
-  CURRENT_WEATHER_API_KEY,
-  CURRENT_WEATHER_API_URL,
-} from "./components/api/api";
+import { CURRENT_WEATHER_API_URL } from "./components/api/api";
 import { useState } from "react";
 
 function App() {
@@ -15,11 +12,11 @@ function App() {
     const [lat, long] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
-      `${CURRENT_WEATHER_API_URL}/weather?lat=${lat}&lon=${long}&appid=${CURRENT_WEATHER_API_KEY}&units=metric`
+      `${CURRENT_WEATHER_API_URL}/weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
     );
 
     const forecastFetch = fetch(
-      `${CURRENT_WEATHER_API_URL}/forecast?lat=${lat}&lon=${long}&appid=${CURRENT_WEATHER_API_KEY}&units=metric`
+      `${CURRENT_WEATHER_API_URL}/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
     );
 
     setIsLoading(true);
