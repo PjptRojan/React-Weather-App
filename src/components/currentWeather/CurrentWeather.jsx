@@ -8,7 +8,7 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className="w-[400px] rounded-md shadow-customShadow mt-10 text-white mx-auto bg-[#333] px-[20px] pb-[20px]">
+        <div className="w-[400px] rounded-md shadow-customShadow my-10 text-white mx-auto bg-[#333] px-[20px] pb-[20px]">
           <div className="flex items-center justify-between">
             <div>
               <p className="font-[600] text-[18px] leading-4 m-0 tracking-wide">
