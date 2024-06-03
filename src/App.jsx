@@ -1,14 +1,16 @@
 import Search from "./components/searchBar/Search";
-import WeatherForecast from "./components/currentWeather/CurrentWeather";
+import WeatherForecast from "./components/weatherForecast/WeatherForecast";
+import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import { CURRENT_WEATHER_API_URL } from "./components/api/api";
 import { useState } from "react";
+import LoadingSpinner from "./components/loadingspinner/LoadingSpinner";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleOnSearchChange = (searchData) => {
+  const handleOnSearchChange = async (searchData) => {
     const [lat, long] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
@@ -37,8 +39,9 @@ function App() {
     <div className="container bg-[#d5d4d4] py-10 mt-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && (
-        <WeatherForecast weatherData={currentWeather} isLoading={isLoading} />
+        <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
       )}
+      {forecast && <WeatherForecast forecastData={forecast} />}
     </div>
   );
 }

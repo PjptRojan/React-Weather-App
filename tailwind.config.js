@@ -10,6 +10,9 @@ module.exports = {
       boxShadow: {
         customShadow: "10px 10px 20px 2px rgb(0, 0, 0, 0.6)",
       },
+      gridTemplateColumns: {
+        "auto-2": "auto auto",
+      },
     },
   },
   plugins: [],
