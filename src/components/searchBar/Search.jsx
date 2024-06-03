@@ -14,9 +14,10 @@ const Search = ({ onSearchChange }) => {
       .then((res) => {
         return {
           options: res.data.map((city) => {
+            console.log("city", city);
             return {
               value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.countryCode}`,
+              label: `${city.name}, ${city.country}`,
             };
           }),
         };
@@ -24,16 +25,16 @@ const Search = ({ onSearchChange }) => {
       .catch((err) => console.log(err));
   };
 
-  const handleOnChange = (searchData) => {
-    setSearch(searchData);
-    onSearchChange(searchData);
+  const handleOnChange = (inputValue) => {
+    setSearch(inputValue);
+    onSearchChange(inputValue);
   };
 
   return (
     <>
       <AsyncPaginate
         placeholder="Search for city"
-        debounceTimeout={1000}
+        debounceTimeout={700}
         value={search}
         onChange={handleOnChange}
         loadOptions={loadOptions}

@@ -6,7 +6,9 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <LoadingSpinner />
+        <div className="flex items-center justify-center w-full mt-5">
+          <LoadingSpinner />
+        </div>
       ) : (
         <div className="w-[400px] rounded-md shadow-customShadow my-10 mx-auto text-white bg-[#333] px-[20px] pb-[20px]">
           <div className="flex items-center justify-between">

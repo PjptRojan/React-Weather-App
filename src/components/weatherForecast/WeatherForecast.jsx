@@ -30,7 +30,7 @@ const WeatherForecast = ({ forecastData }) => {
 
       <Accordion allowZeroExpanded>
         {forecastData.list.splice(0, 7).map((item, index) => {
-          return (
+          return ( 
             <AccordionItem key={index}>
               <AccordionItemHeading>
                 <AccordionItemButton>
