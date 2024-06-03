@@ -7,8 +7,6 @@ import {
 } from "react-accessible-accordion";
 
 const WeatherForecast = ({ forecastData }) => {
-  console.log("data", forecastData);
-
   const weekDays = [
     "Monday",
     "Tuesday",
