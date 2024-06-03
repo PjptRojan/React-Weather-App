@@ -26,14 +26,15 @@ const WeatherForecast = ({ forecastData }) => {
 
   return (
     <>
-      <label className="text-xl font-[700]">7 Day Forecast</label>
+      <label className="text-xl font-[700] italic ml-4">Weekly Forecast</label>
+
       <Accordion allowZeroExpanded>
         {forecastData.list.splice(0, 7).map((item, index) => {
           return (
             <AccordionItem key={index}>
               <AccordionItemHeading>
                 <AccordionItemButton>
-                  <div className="bg-[#f5f5f5] rounded-2xl h-10 m-1 flex items-center cursor-pointer text-lg px-5 py-6">
+                  <div className="bg-[#f5f5f5] hover:bg-gray-200 rounded-2xl h-10 m-2 flex items-center cursor-pointer text-lg px-5 py-6">
                     <img
                       src={`icons/${item.weather[0].icon}.png`}
                       alt="weather"
