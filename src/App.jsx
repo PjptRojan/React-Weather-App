@@ -36,7 +36,7 @@ function App() {
   };
 
   return (
-    <div className="container bg-[#d5d4d4] py-10 mt-10 rounded-md min-h-[150px]">
+    <div className="container bg-[#d5d4d4] py-10 my-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && (
         <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
