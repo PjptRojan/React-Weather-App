@@ -6,6 +6,7 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import { LuChevronsUpDown } from "react-icons/lu";
+import { TiWeatherCloudy } from "react-icons/ti";
 
 const WeatherForecast = ({ forecastData }) => {
   const weekDays = [
@@ -24,6 +25,7 @@ const WeatherForecast = ({ forecastData }) => {
     .concat(weekDays.slice(0, dayInAWeek));
 
   const dailyGridItem = "flex items-center h-[30px] justify-between mx-4";
+  const weatherDetailStyle = "font-[400]";
 
   return (
     <>
@@ -65,7 +67,9 @@ const WeatherForecast = ({ forecastData }) => {
                 <div className="grid-x-0 grid-y-4 grid grow shrink grid-cols-auto-2 py-1 px-4 gap-x-0 gap-y-4">
                   <div className={dailyGridItem}>
                     <label className="text-[#757575]">Pressure</label>
-                    <label>{item.main.pressure} hPa</label>
+                    <label className="text-[#212121]">
+                      {item.main.pressure} hPa
+                    </label>
                   </div>
 
                   <div className={dailyGridItem}>

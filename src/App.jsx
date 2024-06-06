@@ -41,9 +41,9 @@ function App() {
     <div className="container bg-[#d5d4d4] py-10 my-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
       {!currentWeather && !forecast && (
-        <p className="text-lg font-[500] text-center mt-6">
+        <p className="text-lg font-[500] text-center mt-6 transform hover:scale-110 transition-transform duration-300 cursor-pointer">
           Get{" "}
-          <span className="font-[600] text-red-500 text-2xl">real-time</span>{" "}
+          <span className="font-[600] text-red-500 text-2xl ">real-time</span>{" "}
           weather updates for any city around the world.
         </p>
       )}
