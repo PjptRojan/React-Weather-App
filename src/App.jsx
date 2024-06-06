@@ -38,12 +38,21 @@ function App() {
   };
 
   return (
-    <div className="container bg-[#d5d4d4] py-10 my-10 rounded-md min-h-[150px] ">
+    <div className="container bg-[#d5d4d4] py-10 my-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
+      {!currentWeather && !forecast && (
+        <p className="text-lg font-[500] text-center mt-6">
+          Get{" "}
+          <span className="font-[600] text-red-500 text-2xl">real-time</span>{" "}
+          weather updates for any city around the world.
+        </p>
+      )}
       {currentWeather && (
         <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
       )}
-      {forecast && <WeatherForecast forecastData={forecast} />}
+      {forecast && currentWeather && (
+        <WeatherForecast forecastData={forecast} />
+      )}
       {error && <p>{error.message}</p>}
     </div>
   );
