@@ -8,6 +8,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleOnSearchChange = async (searchData) => {
     const [lat, long] = searchData.value.split(" ");
@@ -31,7 +32,7 @@ function App() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        setError(error);
         setIsLoading(false);
       });
   };
@@ -43,6 +44,7 @@ function App() {
         <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
       )}
       {forecast && <WeatherForecast forecastData={forecast} />}
+      {error && <p>{error.message}</p>}
     </div>
   );
 }

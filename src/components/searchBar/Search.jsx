@@ -4,6 +4,9 @@ import { GEO_API_URL, geoApiOptions } from "../api/api";
 
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
+  const [searchError, setSearchError] = useState({
+    message: "",
+  });
 
   const loadOptions = (inputValue) => {
     return fetch(
@@ -22,7 +25,10 @@ const Search = ({ onSearchChange }) => {
           }),
         };
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setSearchError({ ...searchError, message: err.message });
+        console.log("error", err);
+      });
   };
 
   const handleOnChange = (inputValue) => {
@@ -39,6 +45,12 @@ const Search = ({ onSearchChange }) => {
         onChange={handleOnChange}
         loadOptions={loadOptions}
       />
+
+      {searchError.message && (
+        <p className="text-red-400 font-[500] text-center mt-3">
+          {searchError.message}!!
+        </p>
+      )}
     </>
   );
 };
