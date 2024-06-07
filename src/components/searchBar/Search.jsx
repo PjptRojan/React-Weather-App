@@ -4,6 +4,9 @@ import { GEO_API_URL, geoApiOptions } from "../api/api";
 
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
+  const [searchError, setSearchError] = useState({
+    message: "",
+  });
 
   const loadOptions = (inputValue) => {
     return fetch(
@@ -14,30 +17,40 @@ const Search = ({ onSearchChange }) => {
       .then((res) => {
         return {
           options: res.data.map((city) => {
+            console.log("city", city);
             return {
               value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.countryCode}`,
+              label: `${city.name}, ${city.country}`,
             };
           }),
         };
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setSearchError({ ...searchError, message: err.message });
+        console.log("error", err);
+      });
   };
 
-  const handleOnChange = (searchData) => {
-    setSearch(searchData);
-    onSearchChange(searchData);
+  const handleOnChange = (inputValue) => {
+    setSearch(inputValue);
+    onSearchChange(inputValue);
   };
 
   return (
     <>
       <AsyncPaginate
         placeholder="Search for city"
-        debounceTimeout={1000}
+        debounceTimeout={700}
         value={search}
         onChange={handleOnChange}
         loadOptions={loadOptions}
       />
+
+      {searchError.message && (
+        <p className="text-red-400 font-[500] text-center mt-3">
+          {searchError.message}!!
+        </p>
+      )}
     </>
   );
 };
