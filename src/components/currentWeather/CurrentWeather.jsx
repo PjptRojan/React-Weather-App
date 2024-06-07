@@ -24,8 +24,8 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
             <img
               alt="weather"
               className="w-[110px]"
-              // src={`icons/${weatherData.weather[0].icon}.png`}
-              src={rain}
+              src={`icons/${weatherData.weather[0].icon}.png`}
+              // src={rain}
             />
           </div>
           <div className="flex items-center justify-between">
