@@ -10,6 +10,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  console.log("current weather", currentWeather);
+  console.log(" forecast", forecast);
+
   const handleOnSearchChange = async (searchData) => {
     const [lat, long] = searchData.value.split(" ");
 
@@ -37,6 +40,20 @@ function App() {
       });
   };
 
+  const sunriseTimeStamp = currentWeather?.sys?.sunrise;
+  const sunsetTimeStamp = currentWeather?.sys?.sunset;
+
+  const timeStampToLocalStr = (timeStamp) => {
+    const sunriseDate = new Date(timeStamp * 1000);
+    const sunsetDate = new Date(timeStamp * 1000);
+
+    const sunriseLocalStr = sunriseDate.toLocaleString("ne-NP", {
+      timeZoneName: "short",
+    });
+
+    return sunriseLocalStr, sunsetDate;
+  };
+
   return (
     <div className="container bg-[#d5d4d4] py-10 my-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
@@ -47,6 +64,11 @@ function App() {
           weather updates for any city around the world.
         </p>
       )}
+
+      <div>
+        Sunrise: {timeStampToLocalStr(sunriseTimeStamp)}/ Sunset:{" "}
+        {timeStampToLocalStr(sunsetDate)}
+      </div>
       {currentWeather && (
         <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
       )}
