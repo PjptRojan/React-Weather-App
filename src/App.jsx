@@ -37,6 +37,34 @@ function App() {
       });
   };
 
+  const sunriseTimeStamp = currentWeather?.sys?.sunrise;
+  const sunsetTimeStamp = currentWeather?.sys?.sunset;
+
+  const timeStampToLocalStr = (timeStamp) => {
+    if (sunriseTimeStamp) {
+      const sunriseDate = new Date(timeStamp * 1000);
+      const sunriseLocalStr = sunriseDate.toLocaleTimeString("ne-NP", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+        // second: "2-digit",
+        hour12: true,
+      });
+      return sunriseLocalStr;
+    } else {
+      const sunsetDate = new Date(timeStamp * 1000);
+      const sunsetLocalStr = sunsetDate.toLocaleTimeString("ne-NP", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+        // second: "2-digit",
+        hour12: true,
+      });
+
+      return sunsetLocalStr;
+    }
+  };
+
   return (
     <div className="container bg-[#d5d4d4] py-10 my-10 rounded-md min-h-[150px]">
       <Search onSearchChange={handleOnSearchChange} />
@@ -47,9 +75,18 @@ function App() {
           weather updates for any city around the world.
         </p>
       )}
+
       {currentWeather && (
         <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
       )}
+
+      {sunriseTimeStamp && sunsetTimeStamp && (
+        <div className="font-[500] flex items-center justify-between mx-4 mb-4">
+          <p>Sunrise: {timeStampToLocalStr(sunriseTimeStamp)} </p>
+          <p>Sunset: {timeStampToLocalStr(sunsetTimeStamp)}</p>
+        </div>
+      )}
+
       {forecast && currentWeather && (
         <WeatherForecast forecastData={forecast} />
       )}

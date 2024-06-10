@@ -1,5 +1,4 @@
 import LoadingSpinner from "../loadingspinner/LoadingSpinner";
-import rain from "../../weatherAnimation/rain.gif";
 
 const WeatherForecast = ({ weatherData, isLoading }) => {
   const weatherLabels = "text-left font-[500] text-md";
@@ -11,7 +10,7 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="w-[400px] rounded-md shadow-customShadow my-10 mx-auto text-white bg-[#333] px-[20px] py-[20px] ">
+        <div className="w-[450px] rounded-md shadow-customShadow my-10 mx-auto text-white bg-[#333] px-[20px] py-[20px] ">
           <div className="flex items-center justify-between">
             <div>
               <p className="font-[600] text-[18px] leading-4 m-0 tracking-wide">
@@ -25,7 +24,6 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
               alt="weather"
               className="w-[110px]"
               src={`icons/${weatherData.weather[0].icon}.png`}
-              // src={rain}
             />
           </div>
           <div className="flex items-center justify-between">
