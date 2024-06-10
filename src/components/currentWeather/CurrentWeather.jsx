@@ -30,7 +30,7 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
             <p className="font-[600] text-[70px] w-auto tracking-tighter my-3">
               {Math.round(weatherData.main.temp)}°C
             </p>
-            <div className="w-[300px] pl-10">
+            <div className="w-full pl-10">
               <span className={weatherLabels}>Weather Details</span>
               <div className="flex justify-between">
                 <span className={weatherLabels}>Feels Like</span>
