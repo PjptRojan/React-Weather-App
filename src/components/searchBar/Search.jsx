@@ -17,7 +17,6 @@ const Search = ({ onSearchChange }) => {
       .then((res) => {
         return {
           options: res.data.map((city) => {
-            console.log("city", city);
             return {
               value: `${city.latitude} ${city.longitude}`,
               label: `${city.name}, ${city.country}`,
@@ -27,7 +26,6 @@ const Search = ({ onSearchChange }) => {
       })
       .catch((err) => {
         setSearchError({ ...searchError, message: err.message });
-        console.log("error", err);
       });
   };
 

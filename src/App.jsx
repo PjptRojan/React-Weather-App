@@ -10,9 +10,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  console.log("current weather", currentWeather);
-  console.log(" forecast", forecast);
-
   const handleOnSearchChange = async (searchData) => {
     const [lat, long] = searchData.value.split(" ");
 
@@ -44,14 +41,28 @@ function App() {
   const sunsetTimeStamp = currentWeather?.sys?.sunset;
 
   const timeStampToLocalStr = (timeStamp) => {
-    const sunriseDate = new Date(timeStamp * 1000);
-    const sunsetDate = new Date(timeStamp * 1000);
+    if (sunriseTimeStamp) {
+      const sunriseDate = new Date(timeStamp * 1000);
+      const sunriseLocalStr = sunriseDate.toLocaleTimeString("ne-NP", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+        // second: "2-digit",
+        hour12: true,
+      });
+      return sunriseLocalStr;
+    } else {
+      const sunsetDate = new Date(timeStamp * 1000);
+      const sunsetLocalStr = sunsetDate.toLocaleTimeString("ne-NP", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+        // second: "2-digit",
+        hour12: true,
+      });
 
-    const sunriseLocalStr = sunriseDate.toLocaleString("ne-NP", {
-      timeZoneName: "short",
-    });
-
-    return sunriseLocalStr, sunsetDate;
+      return sunsetLocalStr;
+    }
   };
 
   return (
@@ -65,13 +76,17 @@ function App() {
         </p>
       )}
 
-      <div>
-        Sunrise: {timeStampToLocalStr(sunriseTimeStamp)}/ Sunset:{" "}
-        {timeStampToLocalStr(sunsetDate)}
-      </div>
       {currentWeather && (
         <CurrentWeather weatherData={currentWeather} isLoading={isLoading} />
       )}
+
+      {sunriseTimeStamp && sunsetTimeStamp && (
+        <div className="font-[500] flex items-center justify-between mx-4 mb-4">
+          <p>Sunrise: {timeStampToLocalStr(sunriseTimeStamp)} </p>
+          <p>Sunset: {timeStampToLocalStr(sunsetTimeStamp)}</p>
+        </div>
+      )}
+
       {forecast && currentWeather && (
         <WeatherForecast forecastData={forecast} />
       )}

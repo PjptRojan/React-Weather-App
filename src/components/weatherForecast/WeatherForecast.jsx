@@ -25,7 +25,6 @@ const WeatherForecast = ({ forecastData }) => {
     .concat(weekDays.slice(0, dayInAWeek));
 
   const dailyGridItem = "flex items-center h-[30px] justify-between mx-4";
-  const weatherDetailStyle = "font-[400]";
 
   return (
     <>
