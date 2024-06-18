@@ -6,7 +6,6 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import { LuChevronsUpDown } from "react-icons/lu";
-import { TiWeatherCloudy } from "react-icons/ti";
 
 const WeatherForecast = ({ forecastData }) => {
   const weekDays = [
@@ -36,7 +35,7 @@ const WeatherForecast = ({ forecastData }) => {
             <AccordionItem key={index}>
               <AccordionItemHeading>
                 <AccordionItemButton>
-                  <div className="bg-[#f5f5f5] hover:bg-gray-200 rounded-2xl h-10 m-2 flex items-center text-lg px-5 py-6 cursor-pointer ">
+                  <div className="bg-[#f5f5f5] hover:bg-gray-200 rounded-2xl h-10 m-2 flex items-center text-lg px-5 py-6 cursor-pointer border border-black">
                     <div className="flex items-center">
                       <img
                         src={`icons/${item.weather[0].icon}.png`}
@@ -56,7 +55,7 @@ const WeatherForecast = ({ forecastData }) => {
                       {Math.round(item.main.temp_min)}°C /{" "}
                       {Math.round(item.main.temp_max)}°C
                     </label>
-                    <div className="ml-4 text-[#99c3eb]">
+                    <div className="ml-4 text-gray-600">
                       <LuChevronsUpDown />
                     </div>
                   </div>

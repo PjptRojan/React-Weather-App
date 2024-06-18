@@ -33,6 +33,7 @@ function App() {
       })
       .catch((error) => {
         setError(error);
+        console.log("error", error);
         setIsLoading(false);
       });
   };
@@ -81,7 +82,7 @@ function App() {
       )}
 
       {sunriseTimeStamp && sunsetTimeStamp && (
-        <div className="font-[500] flex items-center justify-between mx-4 mb-4">
+        <div className="font-[500] flex flex-col items-start justify-between mx-4 mb-2 text-[#757575]">
           <p>Sunrise: {timeStampToLocalStr(sunriseTimeStamp)} </p>
           <p>Sunset: {timeStampToLocalStr(sunsetTimeStamp)}</p>
         </div>
