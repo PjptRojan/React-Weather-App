@@ -1,8 +1,38 @@
 import LoadingSpinner from "../loadingspinner/LoadingSpinner";
 
-const WeatherForecast = ({ weatherData, isLoading }) => {
+const WeatherForecast = ({
+  weatherData,
+  isLoading,
+  sunriseTime,
+  sunsetTime,
+}) => {
   const weatherLabels = "text-left font-[500] text-md";
   const weatherDetails = "text-right font-[600] text-md";
+
+  const timeStampToLocalStr = (timeStamp) => {
+    if (sunriseTime) {
+      const sunriseDate = new Date(timeStamp * 1000);
+      const sunriseLocalStr = sunriseDate.toLocaleTimeString("ne-NP", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+        // second: "2-digit",
+        hour12: true,
+      });
+      return sunriseLocalStr;
+    } else {
+      const sunsetDate = new Date(timeStamp * 1000);
+      const sunsetLocalStr = sunsetDate.toLocaleTimeString("ne-NP", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+        // second: "2-digit",
+        hour12: true,
+      });
+
+      return sunsetLocalStr;
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -54,6 +84,18 @@ const WeatherForecast = ({ weatherData, isLoading }) => {
                 <span className={weatherLabels}>Pressure</span>
                 <span className={weatherDetails}>
                   {weatherData.main.pressure} hPa
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className={weatherLabels}>Sunrise</span>
+                <span className={weatherDetails}>
+                  {timeStampToLocalStr(sunriseTime)}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className={weatherLabels}>Sunset</span>
+                <span className={weatherDetails}>
+                  {timeStampToLocalStr(sunsetTime)}
                 </span>
               </div>
             </div>
