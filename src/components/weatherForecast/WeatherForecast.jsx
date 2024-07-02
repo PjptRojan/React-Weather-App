@@ -28,7 +28,7 @@ const WeatherForecast = ({ forecastData }) => {
 
   return (
     <>
-      <h3 className="text-xl font-[600] ml-4">Weekly Forecast</h3>
+      <h3 className="text-xl font-[600] ml-4"> Your Weekly Forecast</h3>
 
       <Accordion allowZeroExpanded className="cursor-pointer">
         {forecastData.list.splice(0, 7).map((item, index) => {
